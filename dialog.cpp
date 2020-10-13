@@ -6,6 +6,9 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    connect(ui->EditName1, &QLineEdit::textChanged, this, &Dialog::updateOkButtonState);
+    connect(ui->EditName2, &QLineEdit::textChanged, this, &Dialog::updateOkButtonState);
+    updateOkButtonState();
 }
 
 Dialog::~Dialog()
@@ -31,4 +34,10 @@ QString Dialog::getPlayer1Name() const
 QString Dialog::getPlayer2Name() const
 {
     return ui->EditName2->text();
+}
+
+void Dialog::updateOkButtonState()
+{
+    QPushButton* okButton = ui->Ok;
+    okButton->setEnabled(!ui->EditName1->text().isEmpty() && !ui->EditName2->text().isEmpty());
 }

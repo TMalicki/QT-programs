@@ -8,9 +8,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->startGame, &QPushButton::clicked, this, &MainWindow::startNewGame);
+    connect(ui->actionNew_Game, &QAction::triggered, this, &MainWindow::startNewGame);
     connect(ui->gameBoard, &TicTacToeWidget::playerChanged, this, &MainWindow::updateNameLabels);
     connect(ui->gameBoard, &TicTacToeWidget::gameOver, this, &MainWindow::handleGameOver);
+    connect(ui->actionQuit, &QAction::triggered, qApp, &QApplication::quit);
 }
 
 MainWindow::~MainWindow()

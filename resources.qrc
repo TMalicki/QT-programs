@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new/icons">
+        <file>icons/gameOver.png</file>
+        <file>icons/NewGame.png</file>
+    </qresource>
+</RCC>

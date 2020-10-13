@@ -11,6 +11,11 @@ TicTacToeWidget::TicTacToeWidget(QWidget *parent) : QWidget(parent), score{0,0,0
         for(int col = 0; col < 3; col++)
         {
             QPushButton* button = new QPushButton("");
+            button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+            QFont f = button->font();
+            f.setPointSize(14);
+            button->setFont(f);
+
             gridLayout->addWidget(button, row, col);
             mBoard.append(button);
             connect(button, &QPushButton::clicked, [=]{ buttonClicked(index); });

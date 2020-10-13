@@ -20,6 +20,8 @@ public:
     QString getPlayer2Name() const;
 private:
     Ui::Dialog *ui;
+private slots:
+    void updateOkButtonState();
 };
 
 #endif // DIALOG_H
