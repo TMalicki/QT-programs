@@ -11,12 +11,14 @@ CONFIG += c++11
 SOURCES += \
     Board.cpp \
     dialog.cpp \
+    imagescontainer.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Board.h \
     dialog.h \
+    imagescontainer.h \
     mainwindow.h
 
 FORMS += \

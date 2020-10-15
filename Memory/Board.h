@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QWidget>
+#include "imagescontainer.h"
 
 class Board : public QWidget
 {
@@ -17,6 +18,7 @@ private:
     QVector<std::shared_ptr<QPushButton>> board;
     QPair<int, int> boardSize;
     std::unique_ptr<QGridLayout> gridLayout;
+    ImagesContainer imgContainer;
 
 public slots:
     void initializeBoard(QPair<QString, QString>);

@@ -32,6 +32,6 @@ void Board::initializeBoard(QPair<QString, QString> size)
 void Board::buttonClicked(int index)
 {
     auto button = board[index];
-    button->setIcon(QIcon(":/images/thor.jpg"));
+    button->setIcon(imgContainer.getImg(0));
     button->setIconSize(button->size() / 1.2);
 }
