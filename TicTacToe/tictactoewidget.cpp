@@ -11,6 +11,11 @@ TicTacToeWidget::TicTacToeWidget(QWidget *parent) : QWidget(parent), score{0,0,0
         for(int col = 0; col < 3; col++)
         {
             QPushButton* button = new QPushButton("");
+            button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+            QFont f = button->font();
+            f.setPointSize(14);
+            button->setFont(f);
+
             gridLayout->addWidget(button, row, col);
             mBoard.append(button);
             connect(button, &QPushButton::clicked, [=]{ buttonClicked(index); });
@@ -37,14 +42,11 @@ void TicTacToeWidget::buttonClicked(int index)
     addPoints(index);
     checkWinCondition();
 
-    if(actualPlayer == Player::Player1)
-    {
-        actualPlayer = Player::Player2;
-    }
-    else if(actualPlayer == Player::Player2)
-    {
-        actualPlayer = Player::Player1;
-    }
+    Player temp{};
+    if(actualPlayer == Player::Player1) temp = Player::Player2;
+    else if(actualPlayer == Player::Player2) temp = Player::Player1;
+    actualPlayer = temp;
+    emit playerChanged();
 }
 
 void TicTacToeWidget::initNewGame()
@@ -80,13 +82,8 @@ void TicTacToeWidget::checkWinCondition()
 
     if(winner != Player::Invalid)
     {
-        gameOver(winner);
+        emit gameOver(winner);
     }
-}
-
-void TicTacToeWidget::gameOver(TicTacToeWidget::Player winner)
-{
-    qDebug() << winner;
 }
 
 void TicTacToeWidget::addPoints(int index)
@@ -123,3 +120,4 @@ bool TicTacToeWidget::checkIfDraw()
     if(counter == 0) return true;
     else return false;
 }
+
