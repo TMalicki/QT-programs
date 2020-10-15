@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/gridSize.png</file>
+        <file>icons/quit.png</file>
+        <file>images/thor.jpg</file>
+    </qresource>
+</RCC>
