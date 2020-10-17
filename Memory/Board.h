@@ -16,6 +16,8 @@ signals:
 
 private:
     QVector<std::shared_ptr<QPushButton>> board;
+    QVector<size_t> boardImgs;
+
     QPair<int, int> boardSize;
     std::unique_ptr<QGridLayout> gridLayout;
     ImagesContainer imgContainer;
@@ -23,6 +25,8 @@ private:
 public slots:
     void initializeBoard(QPair<QString, QString>);
     void buttonClicked(int);
+    void shuffleCards();
+    void imgLoading();
 };
 
 #endif // BOARD_H

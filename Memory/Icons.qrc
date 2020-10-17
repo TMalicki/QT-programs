@@ -3,5 +3,12 @@
         <file>icons/gridSize.png</file>
         <file>icons/quit.png</file>
         <file>images/thor.jpg</file>
+        <file>images/hulk.jpg</file>
+        <file>images/spiderMan.jpeg</file>
+        <file>images/ironMan.jpg</file>
+        <file>images/blackPanther.jpg</file>
+        <file>images/blackWidow.jpg</file>
+        <file>images/captainAmerica.jpg</file>
+        <file>images/captainMarvel.jpg</file>
     </qresource>
 </RCC>
