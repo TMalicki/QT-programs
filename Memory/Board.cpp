@@ -21,21 +21,24 @@ void Board::initializeBoard(QPair<QString, QString> size)
 
 void Board::buttonClicked(int index)
 {
-    auto button = board[index];
-
-    button->setIcon(imgContainer.getImg(boardImgs[index]));
-    activeImgs.append(boardImgs[index]);
-    activeIndexes.append(index);
-
-    button->setIconSize(button->size() / 1.2);
-
-    if(activeImgs.size() == 2)
+    if(activeImgs.size() < 2)
     {
-        if(pairCheck() == true)
+        auto button = board[index];
+
+        button->setIcon(imgContainer.getImg(boardImgs[index]));
+        activeImgs.append(boardImgs[index]);
+        activeIndexes.append(index);
+
+        button->setIconSize(button->size() / 1.2);
+
+        if(activeImgs.size() == 2)
         {
-            pairApproved();
+            if(pairCheck() == true)
+            {
+                pairApproved();
+            }
+            else pairDisapproved();
         }
-        else pairDisapproved();
     }
 }
 
@@ -105,7 +108,8 @@ void Board::pairApproved()
 
 void Board::pairDisapproved()
 {
-    QTimer::singleShot(1000, this, &Board::clearCards);
+    QTimer* timer = new QTimer(this);
+    timer->singleShot(1000, this, &Board::clearCards);
 }
 
 void Board::clearCards()
@@ -114,5 +118,4 @@ void Board::clearCards()
      board[activeIndexes[1]].get()->setIcon(QIcon());
      activeImgs.clear();
      activeIndexes.clear();
-
 }

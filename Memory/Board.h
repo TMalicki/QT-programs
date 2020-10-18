@@ -24,7 +24,6 @@ private:
     QPair<int, int> boardSize;
     std::unique_ptr<QGridLayout> gridLayout;
     ImagesContainer imgContainer;
-
 public slots:
     void initializeBoard(QPair<QString, QString>);
     void buttonClicked(int);

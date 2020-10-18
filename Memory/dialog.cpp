@@ -27,7 +27,8 @@ QPair<QString, QString> Dialog::loadData()
 
 void Dialog::updateLoadDataBtn()
 {
-    if(!ui->columnInput->text().isEmpty() && !ui->rowInput->text().isEmpty()) ui->loadBtn->setEnabled(true);
+    if(!ui->columnInput->text().isEmpty() && !ui->rowInput->text().isEmpty()
+       && ui->columnInput->text().toInt() * ui->rowInput->text().toInt() % 2 == 0) ui->loadBtn->setEnabled(true);
 }
 
 QPushButton* Dialog::getBtn()

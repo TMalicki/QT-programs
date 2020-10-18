@@ -8,7 +8,7 @@ class ImagesContainer
 public:
     ImagesContainer();
     QIcon getImg(int index);
-    int getSize() { images.size(); }
+    int getSize() { return images.size(); }
 private:
     QVector<QIcon> images;
 
