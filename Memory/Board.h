@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QWidget>
+#include <QTimer>
 #include "imagescontainer.h"
 
 class Board : public QWidget
@@ -17,6 +18,8 @@ signals:
 private:
     QVector<std::shared_ptr<QPushButton>> board;
     QVector<size_t> boardImgs;
+    QVector<size_t> activeImgs;
+    QVector<size_t> activeIndexes;
 
     QPair<int, int> boardSize;
     std::unique_ptr<QGridLayout> gridLayout;
@@ -27,6 +30,11 @@ public slots:
     void buttonClicked(int);
     void shuffleCards();
     void imgLoading();
+    void makeBoard();
+    bool pairCheck();
+    void pairApproved();
+    void pairDisapproved();
+    void clearCards();
 };
 
 #endif // BOARD_H

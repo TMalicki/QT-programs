@@ -14,23 +14,7 @@ void Board::initializeBoard(QPair<QString, QString> size)
     boardSize = {size.first.toInt(), size.second.toInt()};
     boardImgs.resize(boardSize.first * boardSize.second);
 
-    this->setEnabled(true);
-    int index {0};
-
-    for(int i = 0; i < boardSize.second; i++)
-    {
-        for(int j = 0; j < boardSize.first; j++)
-        {
-            std::shared_ptr<QPushButton> button = std::make_shared<QPushButton>("");
-            button->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-            board.append(button);
-            gridLayout->addWidget(button.get(), i, j);
-            connect(button.get(), &QPushButton::clicked, [this, index](){ buttonClicked(index); });
-            index++;
-        }
-    }
-
+    makeBoard();
     imgLoading();
     shuffleCards();
 }
@@ -40,8 +24,19 @@ void Board::buttonClicked(int index)
     auto button = board[index];
 
     button->setIcon(imgContainer.getImg(boardImgs[index]));
+    activeImgs.append(boardImgs[index]);
+    activeIndexes.append(index);
 
     button->setIconSize(button->size() / 1.2);
+
+    if(activeImgs.size() == 2)
+    {
+        if(pairCheck() == true)
+        {
+            pairApproved();
+        }
+        else pairDisapproved();
+    }
 }
 
 void Board::shuffleCards()
@@ -69,4 +64,55 @@ void Board::imgLoading()
         boardIncrement += 2;
         imgIncrement++;
     }
+}
+
+void Board::makeBoard()
+{
+    this->setEnabled(true);
+    int index {0};
+
+    for(int i = 0; i < boardSize.second; i++)
+    {
+        for(int j = 0; j < boardSize.first; j++)
+        {
+            std::shared_ptr<QPushButton> button = std::make_shared<QPushButton>("");
+            button->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+            board.append(button);
+            gridLayout->addWidget(button.get(), i, j);
+            connect(button.get(), &QPushButton::clicked, [this, index](){ buttonClicked(index); });
+            index++;
+        }
+    }
+}
+
+bool Board::pairCheck()
+{
+    if(activeImgs[0] == activeImgs[1])
+    {
+        return true;
+    }
+    return false;
+}
+
+void Board::pairApproved()
+{
+    board[activeIndexes[0]].get()->setEnabled(false);
+    board[activeIndexes[1]].get()->setEnabled(false);
+    activeImgs.clear();
+    activeIndexes.clear();
+}
+
+void Board::pairDisapproved()
+{
+    QTimer::singleShot(1000, this, &Board::clearCards);
+}
+
+void Board::clearCards()
+{
+     board[activeIndexes[0]].get()->setIcon(QIcon());
+     board[activeIndexes[1]].get()->setIcon(QIcon());
+     activeImgs.clear();
+     activeIndexes.clear();
+
 }
