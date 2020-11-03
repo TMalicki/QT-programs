@@ -4,7 +4,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
-#include <QTimer>
 
 #include "pensil.h"
 
@@ -15,19 +14,13 @@ public:
     DrawArea(QObject* parent = 0);
 
 private:
-    bool buttonPressed;
-    QTimer* timer;
-   // Pensil* pensil;
-    QMouseEvent* mouseEv;
-    // QGraphicsScene interface
+    bool drawing;
+    qreal mRadius;
+    QPainterPath mDrawPath;
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-
-public slots:
-    void updateDraw(QPointF);
-    void mouseMoveEv(QMouseEvent *event);
 };
 
 #endif // DRAWAREA_H
