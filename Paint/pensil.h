@@ -1,24 +1,19 @@
 #ifndef PENSIL_H
 #define PENSIL_H
 
-#include <QGraphicsItem>
-#include <QGraphicsScene>
+#include <QPainter>
 
-class Pensil : public QGraphicsItem
+
+
+class Pensil
 {
-public:
-    Pensil(qreal radius = 2);
-
-    // QGraphicsItem interface
-public:
-    virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    virtual QRectF boundingRect() const;
-
-
-
 private:
-    qreal radius;
-    
+    qreal mRadius;
+    QPen mPen;
+public:
+    Pensil(qreal radius = 2.0f);
+
+    QPen getPen() { return mPen; }
 };
 
 #endif // PENSIL_H

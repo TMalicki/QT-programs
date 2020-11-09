@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>749</width>
-    <height>398</height>
+    <width>836</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,84 @@
    <widget class="QGraphicsView" name="drawableArea">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>40</y>
+      <x>140</x>
+      <y>70</y>
       <width>551</width>
       <height>271</height>
      </rect>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="lineWidth">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>10</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>Width</string>
+    </property>
+    <property name="icon">
+     <iconset resource="Resources.qrc">
+      <normaloff>:/Icons/Icons/lineWidth.png</normaloff>:/Icons/Icons/lineWidth.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::InstantPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
+    </property>
+    <property name="arrowType">
+     <enum>Qt::NoArrow</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="brush">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Brush</string>
+    </property>
+    <property name="icon">
+     <iconset resource="Resources.qrc">
+      <normaloff>:/Icons/Icons/pencilIcon.png</normaloff>:/Icons/Icons/pencilIcon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::InstantPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextUnderIcon</enum>
+    </property>
+    <property name="autoRaise">
+     <bool>false</bool>
+    </property>
+    <property name="arrowType">
+     <enum>Qt::NoArrow</enum>
     </property>
    </widget>
   </widget>
@@ -63,7 +133,6 @@
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
-   <addaction name="actionPensil"/>
   </widget>
   <widget class="QToolBar" name="barView">
    <property name="windowTitle">
@@ -81,18 +150,6 @@
    <addaction name="actionBigger"/>
    <addaction name="actionSmaller"/>
   </widget>
-  <action name="actionPensil">
-   <property name="icon">
-    <iconset resource="Resources.qrc">
-     <normaloff>:/Icons/Icons/pencilIcon.png</normaloff>:/Icons/Icons/pencilIcon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Pensil</string>
-   </property>
-   <property name="toolTip">
-    <string>Pensil</string>
-   </property>
-  </action>
   <action name="actionBigger">
    <property name="text">
     <string>Bigger</string>

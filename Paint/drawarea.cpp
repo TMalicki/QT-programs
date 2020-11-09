@@ -4,15 +4,23 @@
 #include <QDebug>
 #include <QPainter>
 #include <QApplication>
+#include <QWidget>
 
-DrawArea::DrawArea(QObject *parent) : QGraphicsScene(parent), drawing(false), mRadius(2), mDrawPath{}
-{}
+DrawArea::DrawArea(QObject *parent) : QGraphicsScene(parent), drawing(false), mPensil{}
+{
+    mPensil = new Pensil();
+
+   // connect(this, &DrawArea::mousePress, [=](){ setState(State::Press); eventState = State::Press; });
+   // connect(this, &DrawArea::mouseMove, [=](){ setState(State::Move); eventState = State::Move; });
+   // connect(this, &DrawArea::setState, [=](){ mPensil->updateState(State::Press); });
+}
 
 void DrawArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+
     if(event->button() & Qt::LeftButton)
     {
-        mDrawPath.moveTo(event->scenePos());
+        previousPoint = event->scenePos();
 
         event->accept();
         drawing = true;
@@ -33,12 +41,11 @@ void DrawArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if(drawing == false) {}
     else
     {
-        mDrawPath.lineTo(event->scenePos());
+         addLine(previousPoint.x(),
+                 previousPoint.y(),
+                 event->scenePos().x(),
+                 event->scenePos().y(), mPensil->getPen());
 
-        this->clear();
-        addPath(mDrawPath);
+         previousPoint = event->scenePos();
     }
 }
-
-
-

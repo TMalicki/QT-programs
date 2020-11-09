@@ -3,7 +3,11 @@
 
 #include <QMenuBar>
 #include <QGraphicsView>
+
 #include "drawarea.h"
+
+
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,6 +15,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->barView->setVisible(false);
+    //ui->barTools->addWidget(mPenSize.setObject());
+
+  /*
+    QMenu *menu = new QMenu();
+    QAction *testAction = new QAction("test menu item", this);
+    menu->addAction(testAction);
+
+    QToolButton* toolButton = new QToolButton();
+    toolButton->setMenu(menu);
+    toolButton->setIcon(QIcon(":/Icons/Icons/lineWidth.png"));
+    toolButton->setPopupMode(QToolButton::InstantPopup);
+    toolButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
+    ui->barTools->addWidget(toolButton);
+*/
+    ui->barTools->addWidget(ui->brush);
+    ui->barTools->addWidget(ui->lineWidth);
+
+    ui->brush->addAction(new QAction("Brush 1", this));
+    ui->brush->addAction(new QAction("Brush 2", this));
+
+    ui->lineWidth->addAction(new QAction("5 PX", this));
+    ui->lineWidth->addAction(new QAction("8 PX", this));
+
 
     setCentralWidget(ui->drawableArea);
 
@@ -22,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     DrawArea* drawArea = new DrawArea(ui->drawableArea);
     ui->drawableArea->setScene(drawArea);
-
     ui->drawableArea->setSceneRect(-300,-300,300,300);
     ui->drawableArea->resize(600,600);
 }
@@ -31,6 +57,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 
 

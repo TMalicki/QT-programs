@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Icons">
         <file>Icons/pencilIcon.png</file>
+        <file>Icons/lineWidth.png</file>
     </qresource>
 </RCC>
