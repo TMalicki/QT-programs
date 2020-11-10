@@ -1,6 +1,6 @@
 #include "pensil.h"
 
-Pensil::Pensil(qreal radius) : mRadius{radius}, mPen{}
+Pensil::Pensil(int radius) : mRadius{radius}, mPen{}
 {
     mPen.setWidth(mRadius);
     mPen.setColor(Qt::red);

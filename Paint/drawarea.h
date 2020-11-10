@@ -16,24 +16,17 @@ class DrawArea : public QGraphicsScene
 public:
     DrawArea(QObject* parent = 0);
 
+public:
+    void setBrushSize(int brushSize) { mPensil->setBrushWidth(brushSize); }
+
 private:
     QPointF previousPoint;
-
     bool drawing;
-    //qreal mRadius;
-    //QPainter* mPainter;
-    //QPainterPath mDrawPath;
-    Pensil* mPensil;//
-    //int eventState;
+    Pensil* mPensil;
 
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-
-signals:
-   // void mousePress();
-   // void mouseMove();
-   // void setState(State state);
 };
 
 #endif // DRAWAREA_H

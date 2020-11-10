@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "pensil.h"
+#include "penwidth.h"
 
 #include <QMainWindow>
 #include <QPainter>
@@ -22,5 +23,6 @@ public:
 
 protected:
     Ui::MainWindow *ui;
+    penWidth* widthPen;
 };
 #endif // MAINWINDOW_H

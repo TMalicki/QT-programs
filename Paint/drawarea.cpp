@@ -9,15 +9,10 @@
 DrawArea::DrawArea(QObject *parent) : QGraphicsScene(parent), drawing(false), mPensil{}
 {
     mPensil = new Pensil();
-
-   // connect(this, &DrawArea::mousePress, [=](){ setState(State::Press); eventState = State::Press; });
-   // connect(this, &DrawArea::mouseMove, [=](){ setState(State::Move); eventState = State::Move; });
-   // connect(this, &DrawArea::setState, [=](){ mPensil->updateState(State::Press); });
 }
 
 void DrawArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-
     if(event->button() & Qt::LeftButton)
     {
         previousPoint = event->scenePos();

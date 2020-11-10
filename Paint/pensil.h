@@ -2,17 +2,17 @@
 #define PENSIL_H
 
 #include <QPainter>
-
-
+#include <QDebug>
 
 class Pensil
 {
 private:
-    qreal mRadius;
+    int mRadius;
     QPen mPen;
 public:
-    Pensil(qreal radius = 2.0f);
+    Pensil(int radius = 2);
 
+    void setBrushWidth(int radius) { qDebug() << radius; mRadius = radius; }
     QPen getPen() { return mPen; }
 };
 

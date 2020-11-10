@@ -5,39 +5,28 @@
 #include <QGraphicsView>
 
 #include "drawarea.h"
-
-
+#include <QDebug>
 #include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow), widthPen{}
 {
     ui->setupUi(this);
     ui->barView->setVisible(false);
-    //ui->barTools->addWidget(mPenSize.setObject());
 
-  /*
-    QMenu *menu = new QMenu();
-    QAction *testAction = new QAction("test menu item", this);
-    menu->addAction(testAction);
+    widthPen = new penWidth(this);
+    widthPen->setParent(this);
+    ui->barTools->addWidget(widthPen);
 
-    QToolButton* toolButton = new QToolButton();
-    toolButton->setMenu(menu);
-    toolButton->setIcon(QIcon(":/Icons/Icons/lineWidth.png"));
-    toolButton->setPopupMode(QToolButton::InstantPopup);
-    toolButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
-    ui->barTools->addWidget(toolButton);
-*/
+    /*
     ui->barTools->addWidget(ui->brush);
     ui->barTools->addWidget(ui->lineWidth);
 
     ui->brush->addAction(new QAction("Brush 1", this));
     ui->brush->addAction(new QAction("Brush 2", this));
 
-    ui->lineWidth->addAction(new QAction("5 PX", this));
-    ui->lineWidth->addAction(new QAction("8 PX", this));
-
+*/
 
     setCentralWidget(ui->drawableArea);
 
@@ -47,10 +36,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionView, &QAction::triggered,
             [=](){ ui->barView->setVisible(true); ui->barTools->setVisible(false); });
 
+    //connect(widthPen, &penWidth::sendBrushSize, ui->drawableArea, &DrawArea::setBrushSize);
+
     DrawArea* drawArea = new DrawArea(ui->drawableArea);
     ui->drawableArea->setScene(drawArea);
     ui->drawableArea->setSceneRect(-300,-300,300,300);
     ui->drawableArea->resize(600,600);
+
+
+    connect(widthPen, &penWidth::sendBrushSize, [=](int test){ drawArea->setBrushSize(test); qDebug() << test; });
 }
 
 MainWindow::~MainWindow()
