@@ -5,10 +5,9 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
 #include <QPainter>
+#include <QVector>
 
 #include "pensil.h"
-
-//enum State { Press, Move };
 
 class DrawArea : public QGraphicsScene
 {
@@ -18,15 +17,21 @@ public:
 
 public:
     void setBrushSize(int brushSize) { mPensil->setBrushWidth(brushSize); }
-
+    void checkShortcuts();
 private:
     QPointF previousPoint;
     bool drawing;
     Pensil* mPensil;
+    QVector<int> pressedKeys;
 
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+
+    // QGraphicsScene interface
+protected:
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // DRAWAREA_H

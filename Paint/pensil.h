@@ -7,13 +7,12 @@
 class Pensil
 {
 private:
-    int mRadius;
     QPen mPen;
 public:
     Pensil(int radius = 2);
 
-    void setBrushWidth(int radius) { qDebug() << radius; mRadius = radius; }
-    QPen getPen() { return mPen; }
+    void setBrushWidth(int radius) { mPen.setWidth(radius); }
+    const QPen getPen() { return mPen; }
 };
 
 #endif // PENSIL_H

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "pensil.h"
-#include "penwidth.h"
+#include "penwidthButton.h"
 
 #include <QMainWindow>
 #include <QPainter>

@@ -27,23 +27,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->brush->addAction(new QAction("Brush 2", this));
 
 */
-
     setCentralWidget(ui->drawableArea);
-
-    connect(ui->actionTools, &QAction::triggered,
-            [=](){ ui->barTools->setVisible(true); ui->barView->setVisible(false); });
-
-    connect(ui->actionView, &QAction::triggered,
-            [=](){ ui->barView->setVisible(true); ui->barTools->setVisible(false); });
-
-    //connect(widthPen, &penWidth::sendBrushSize, ui->drawableArea, &DrawArea::setBrushSize);
 
     DrawArea* drawArea = new DrawArea(ui->drawableArea);
     ui->drawableArea->setScene(drawArea);
     ui->drawableArea->setSceneRect(-300,-300,300,300);
     ui->drawableArea->resize(600,600);
 
+    qApp->installEventFilter(this);
 
+    connect(ui->actionTools, &QAction::triggered,
+            [=](){ ui->barTools->setVisible(true); ui->barView->setVisible(false); });
+
+    connect(ui->actionView, &QAction::triggered,
+            [=](){ ui->barView->setVisible(true); ui->barTools->setVisible(false); });
     connect(widthPen, &penWidth::sendBrushSize, [=](int test){ drawArea->setBrushSize(test); qDebug() << test; });
 }
 
@@ -51,7 +48,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 
 

@@ -13,13 +13,13 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     pensil.cpp \
-    penwidth.cpp
+    penwidthButton.cpp
 
 HEADERS += \
     drawarea.h \
     mainwindow.h \
     pensil.h \
-    penwidth.h
+    penwidthButton.h
 
 FORMS += \
     mainwindow.ui
