@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>Icons/pencilIcon.png</file>
+        <file>Icons/lineWidth.png</file>
+        <file>Icons/widthEight.png</file>
+        <file>Icons/widthOne.png</file>
+        <file>Icons/widthSix.png</file>
+        <file>Icons/widthThree.png</file>
+    </qresource>
+</RCC>
