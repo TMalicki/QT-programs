@@ -13,6 +13,12 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGraphicsView" name="drawableArea">
     <property name="geometry">
@@ -25,6 +31,41 @@
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
+    </property>
+   </widget>
+   <widget class="chosenColor" name="firstColorBox" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">:hover
+{
+	background-color: rgba(20,40,50,0.5);
+}
+</string>
+    </property>
+   </widget>
+   <widget class="chosenColor" name="secondColorBox" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">:hover
+{
+	background-color: rgba(20,40,50,0.5);
+}
+
+</string>
     </property>
    </widget>
   </widget>
@@ -121,6 +162,14 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>chosenColor</class>
+   <extends>QWidget</extends>
+   <header location="global">chosencolor.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

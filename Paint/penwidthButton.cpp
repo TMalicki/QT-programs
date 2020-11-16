@@ -6,9 +6,9 @@ penWidth::penWidth(QWidget* parent) : QToolButton(parent)
 {
     loadActions();
     loadToolbar();
-    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(sendActionIndex(QAction*)));
+    setParent(this);
 
-    qApp->installEventFilter(this);
+    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(sendActionIndex(QAction*)));
 }
 
 void penWidth::setParent(QObject* parent)

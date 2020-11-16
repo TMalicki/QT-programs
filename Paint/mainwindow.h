@@ -3,6 +3,7 @@
 
 #include "pensil.h"
 #include "penwidthButton.h"
+#include "chosencolor.h"
 
 #include <QMainWindow>
 #include <QPainter>
