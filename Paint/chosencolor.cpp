@@ -5,27 +5,36 @@
 
 int chosenColor::counter{0};
 
-chosenColor::chosenColor(QWidget *parent) : QWidget(parent)
+chosenColor::chosenColor(QWidget *parent) : QWidget(parent), color{QColor(Qt::black)}
 {
     layout = new QVBoxLayout(this);
 
     colorBox = new QLabel("");
     colorBox->setAlignment(Qt::AlignCenter);
     colorBox->setStyleSheet("*{background-color:red; border: 1px solid black; }");
-    //colorBox->setFixedSize(30,30);
 
-    text = new QLabel("Color 1");
+    text = new QLabel("");
     text->setWordWrap(true);
     text->setAlignment(Qt::AlignCenter);
     text->setStyleSheet("background-color:transparent;");
 
-    layout->addWidget(colorBox, Qt::AlignCenter);
-    layout->addWidget(text, Qt::AlignCenter);
+    frame = new QFrame;
+    frameLayout = new QVBoxLayout;
+    frameLayout->addWidget(colorBox);
+    frameLayout->setMargin(1);
+    frame->setLayout(frameLayout);
+    frame->setStyleSheet("*{ border: 1px solid black; }");
+    frame->setEnabled(false);
+
+    layout->addWidget(frame);
+    layout->addWidget(text);
 
     this->setLayout(layout);
 
     counter++;
     setSize();
+
+    //connect(this, &chosenColor::mousePressEvent, )
 }
 
 void chosenColor::setSize()
@@ -33,10 +42,14 @@ void chosenColor::setSize()
     if(counter == 1)
     {
         this->setFixedSize(50,80);
+        text->setText("Color 1");
     }
     else
     {
         this->setFixedSize(50,80);
+        text->setText("Color 2");
+        frame->setStyleSheet("*{ margin: 1px; }");
+        frameLayout->setMargin(1);
         //colorBox->setFixedSize(colorBox->size() - QSize(5,5));
     }
 }

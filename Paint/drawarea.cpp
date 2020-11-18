@@ -8,7 +8,7 @@
 
 DrawArea::DrawArea(QObject *parent) : QGraphicsScene(parent), drawing(false), mPensil{}, pressedKeys{}
 {
-    mPensil = new Pensil();
+    mPensil = new pensilSettings();
 }
 
 void DrawArea::checkShortcuts()

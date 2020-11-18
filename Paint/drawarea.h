@@ -7,7 +7,7 @@
 #include <QPainter>
 #include <QVector>
 
-#include "pensil.h"
+#include "pensilSettings.h"
 
 class DrawArea : public QGraphicsScene
 {
@@ -18,10 +18,11 @@ public:
 public:
     void setBrushSize(int brushSize) { mPensil->setBrushWidth(brushSize); }
     void checkShortcuts();
+    void setColor(QColor color) { mPensil->setColor(color); }
 private:
     QPointF previousPoint;
     bool drawing;
-    Pensil* mPensil;
+    pensilSettings* mPensil;
     QVector<int> pressedKeys;
 
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);

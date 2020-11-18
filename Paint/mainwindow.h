@@ -1,9 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "pensil.h"
+#include "pensilSettings.h"
 #include "penwidthButton.h"
 #include "chosencolor.h"
+#include "drawarea.h"
 
 #include <QMainWindow>
 #include <QPainter>
@@ -22,8 +23,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void loadDrawArea(DrawArea*);
 protected:
     Ui::MainWindow *ui;
-    penWidth* widthPen;
+
+    penWidthButton* widthPen;
 };
 #endif // MAINWINDOW_H

@@ -4,11 +4,11 @@
 #include <QMenu>
 #include <QToolButton>
 
-class penWidth : public QToolButton
+class penWidthButton : public QToolButton
 {
     Q_OBJECT
 public:
-    penWidth(QWidget* parent = nullptr);
+    penWidthButton(QWidget* parent = nullptr);
     void setParent(QObject*);
     void loadActions();
     void loadToolbar();

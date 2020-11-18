@@ -13,14 +13,14 @@ SOURCES += \
     drawarea.cpp \
     main.cpp \
     mainwindow.cpp \
-    pensil.cpp \
+    pensilSettings.cpp \
     penwidthButton.cpp
 
 HEADERS += \
     chosencolor.h \
     drawarea.h \
     mainwindow.h \
-    pensil.h \
+    pensilSettings.h \
     penwidthButton.h
 
 FORMS += \

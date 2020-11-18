@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QApplication>
 
-penWidth::penWidth(QWidget* parent) : QToolButton(parent)
+penWidthButton::penWidthButton(QWidget* parent) : QToolButton(parent)
 {
     loadActions();
     loadToolbar();
@@ -11,7 +11,7 @@ penWidth::penWidth(QWidget* parent) : QToolButton(parent)
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(sendActionIndex(QAction*)));
 }
 
-void penWidth::setParent(QObject* parent)
+void penWidthButton::setParent(QObject* parent)
 {
     for(auto& action : actionList)
     {
@@ -19,7 +19,7 @@ void penWidth::setParent(QObject* parent)
     }
 }
 
-void penWidth::loadActions()
+void penWidthButton::loadActions()
 {
     menu = new QMenu();
     actionList.append(new QAction(QIcon(":/Icons/Icons/widthOne.png"),"1 PX"));
@@ -34,14 +34,14 @@ void penWidth::loadActions()
     }
 }
 
-void penWidth::loadToolbar()
+void penWidthButton::loadToolbar()
 {
     setMenu(menu);
     setIcon(QIcon(":/Icons/Icons/lineWidth.png"));
     setPopupMode(QToolButton::InstantPopup);
 }
 
-void penWidth::sendActionIndex(QAction* action)
+void penWidthButton::sendActionIndex(QAction* action)
 {
     emit sendBrushSize(action->data().toInt());
 }

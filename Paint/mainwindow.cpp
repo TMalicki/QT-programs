@@ -4,7 +4,7 @@
 #include <QMenuBar>
 #include <QGraphicsView>
 
-#include "drawarea.h"
+
 #include <QDebug>
 #include <QToolButton>
 
@@ -15,33 +15,36 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->barView->setVisible(false);
 
-    widthPen = new penWidth(this);
+    widthPen = new penWidthButton(this);
+
     ui->barTools->addWidget(widthPen);
-
-
-
     ui->barTools->addWidget(ui->firstColorBox);
     ui->barTools->addWidget(ui->secondColorBox);
 
-
-    setCentralWidget(ui->drawableArea);
-
     DrawArea* drawArea = new DrawArea(ui->drawableArea);
-    ui->drawableArea->setScene(drawArea);
-    ui->drawableArea->setSceneRect(-300,-300,300,300);
-    ui->drawableArea->resize(600,600);
+    loadDrawArea(drawArea);
 
     connect(ui->actionTools, &QAction::triggered,
             [=](){ ui->barTools->setVisible(true); ui->barView->setVisible(false); });
 
     connect(ui->actionView, &QAction::triggered,
             [=](){ ui->barView->setVisible(true); ui->barTools->setVisible(false); });
-    connect(widthPen, &penWidth::sendBrushSize, [=](int size){ drawArea->setBrushSize(size); });
+    connect(widthPen, &penWidthButton::sendBrushSize, [=](int size){ drawArea->setBrushSize(size); });
+    //connect(ui->firstColorBox, &chosenColor::click,
+    //        [=]() { drawArea->setColor(ui->firstColorBox->getColor()); });
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::loadDrawArea(DrawArea* drawArea)
+{
+    this->setCentralWidget(ui->drawableArea);
+    ui->drawableArea->setScene(drawArea);
+    ui->drawableArea->setSceneRect(-300,-300,300,300);
+    ui->drawableArea->resize(600,600);
 }
 
 
