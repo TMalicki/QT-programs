@@ -26,12 +26,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->actionTools, &QAction::triggered,
             [=](){ ui->barTools->setVisible(true); ui->barView->setVisible(false); });
-
     connect(ui->actionView, &QAction::triggered,
             [=](){ ui->barView->setVisible(true); ui->barTools->setVisible(false); });
     connect(widthPen, &penWidthButton::sendBrushSize, [=](int size){ drawArea->setBrushSize(size); });
-    //connect(ui->firstColorBox, &chosenColor::click,
-    //        [=]() { drawArea->setColor(ui->firstColorBox->getColor()); });
+    connect(ui->firstColorBox, &chosenColor::click,
+            [=]()
+            { drawArea->setColor(ui->firstColorBox->getColor());
+              ui->firstColorBox->setHighlightBackground();
+              ui->secondColorBox->resetHighlightBackground(); });
+    connect(ui->secondColorBox, &chosenColor::click,
+            [=]()
+            { drawArea->setColor(ui->secondColorBox->getColor());
+              ui->secondColorBox->setHighlightBackground();
+              ui->firstColorBox->resetHighlightBackground(); });
 }
 
 MainWindow::~MainWindow()

@@ -32,6 +32,7 @@ void DrawArea::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if(event->button() & Qt::LeftButton)
     {
+        //mPensil->setColor(); color1 and if rightButton setColor(); color2
         previousPoint = event->scenePos();
 
         event->accept();
